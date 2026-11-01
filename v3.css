@@ -268,7 +268,7 @@ body{background:var(--shell)}
 .more3 a:hover .d3{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
 
 /* close band */
-.close3{padding-block:clamp(64px,8vw,120px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);align-items:end}
+.close3{padding-block:clamp(64px,8vw,120px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);align-items:end;align-items:last baseline}
 .close3 h2{grid-column:1/9}
 .close3 .r{grid-column:9/13;display:grid;gap:14px;justify-items:start}
 .close3 .r span{font-size:14px;color:var(--ink)}

@@ -38,7 +38,14 @@
   /* company rows: one open at a time. The name attribute does this in current browsers; this covers older ones.
      Only .cos-r rows take part, so the Leadership rows and anything else on the page are left alone. */
   var cosR=$$('.cos-r');
-  cosR.forEach(function(d){d.addEventListener('toggle',function(){if(d.open)cosR.forEach(function(o){if(o!==d)o.open=false})})});
+  /* Opening one row closes the others, and the page above it shrinks, which threw the reader a section down.
+     On the click, remember where the row sits. For the next 40 ticks (about 0.7s), nudge the scroll so the row stays put; stop at once if the reader scrolls. */
+  cosR.forEach(function(d){var s=d.querySelector('summary');s.addEventListener('click',function(){var t=s.getBoundingClientRect().top,n=0,stop=false,
+      halt=function(){stop=true};
+    addEventListener('wheel',halt,{once:true,passive:true});addEventListener('touchmove',halt,{once:true,passive:true});
+    (function step(){if(stop||++n>40){removeEventListener('wheel',halt);removeEventListener('touchmove',halt);return}
+      if(d.open){cosR.forEach(function(o){if(o!==d)o.open=false});var dy=s.getBoundingClientRect().top-t;if(Math.abs(dy)>1)scrollBy({top:dy,behavior:'instant'})}
+      setTimeout(step,16)})()})});
 
   /* catering years: wheel beside the steps */
   var yw=$('.yrs .wheel');
