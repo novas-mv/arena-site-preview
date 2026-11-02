@@ -70,7 +70,7 @@ body{background:var(--shell)}
 .slab .fw{display:inline-block;will-change:opacity}
 /* N · statement band: on pale gold; on the home page each word fills as you scroll (once per site) */
 .slab{padding-block:clamp(80px,10vw,160px)}
-.slab p.big{font-family:'Jost','Futura','Century Gothic',sans-serif;font-weight:300;font-size:clamp(28px,3.6vw,56px);line-height:1.2;letter-spacing:-.01em;max-width:21em}
+.slab p.big{font-family:'Jost','Futura','Century Gothic',sans-serif;font-weight:400;font-size:clamp(28px,3.6vw,56px);line-height:1.2;letter-spacing:-.01em;max-width:21em}
 .slab .k{display:block;margin-bottom:28px}
 
 /* full-page spread: the photograph runs the full width; caption below, never on it */
