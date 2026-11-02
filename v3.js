@@ -31,9 +31,23 @@
       for(var v=a;v<=b;v++){var x=document.createElement('i');x.textContent=v%10;r.appendChild(x)}el.appendChild(r);reels.push({r:r,a:a,div:div})});
     return function(y){reels.forEach(function(o){o.r.style.transform='translateY('+(-(Math.floor(+y/o.div)-o.a))+'em)'})}}
 
-  /* M · held opener fades as the next ground covers it */
-  var hold=$('.hold-in');
-  if(hold)ticks.push(function(vh){if(!still&&wide())hold.style.opacity=clamp(1-scrollY/(vh*.8),0,1);else hold.style.opacity=1});
+  /* Hero: scrolls away like any other section (no cover, no fade). */
+
+  /* Statement band: the ink fills in word by word as you scroll, with a soft leading edge of about three words.
+     Faint to full, so the sentence is whole and AA once filled. Reduced motion, or no script: plain full ink. */
+  var fill=$('[data-fill]');
+  if(fill&&!still){
+    var words=fill.textContent.trim().split(/\s+/);fill.setAttribute('aria-label',fill.textContent.trim());
+    fill.innerHTML=words.map(function(w){return '<span class="fw" aria-hidden="true">'+w+'</span>'}).join(' ');
+    var fws=$$('.fw',fill),EDGE=3,FLOOR=.16;
+    ticks.push(function(vh){var r=fill.getBoundingClientRect(),p=clamp((vh*.88-r.top)/(vh*.5+r.height*.35),0,1),n=fws.length;
+      fws.forEach(function(el,i){var w=clamp((p*(n+EDGE)-i)/EDGE,0,1);el.style.opacity=(FLOOR+(1-FLOOR)*w).toFixed(3)})});
+  }
+
+  /* Photo curtain: the photograph slides up over the statement; the statement settles back (smaller, dimmer) as it is covered. */
+  var cur=$('.cur'),curBack=cur&&$('.cur-back',cur),curFront=cur&&$('.spread',cur);
+  if(cur&&curBack&&curFront&&!still)ticks.push(function(vh){var t=curFront.getBoundingClientRect().top,p=clamp((vh-t)/(vh*.9),0,1);
+    curBack.style.transform='scale('+(1-.06*p).toFixed(4)+')';curBack.style.opacity=(1-.2*p).toFixed(3)});
 
   /* company rows: one open at a time. The name attribute does this in current browsers; this covers older ones.
      Only .cos-r rows take part, so the Leadership rows and anything else on the page are left alone. */
