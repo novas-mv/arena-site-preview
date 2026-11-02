@@ -31,7 +31,9 @@
       for(var v=a;v<=b;v++){var x=document.createElement('i');x.textContent=v%10;r.appendChild(x)}el.appendChild(r);reels.push({r:r,a:a,div:div})});
     return function(y){reels.forEach(function(o){o.r.style.transform='translateY('+(-(Math.floor(+y/o.div)-o.a))+'em)'})}}
 
-  /* Hero: scrolls away like any other section (no cover, no fade). */
+  /* Hero: scrolls away like any other section (no cover) and fades out as it goes. Reduced motion: no fade. */
+  var heroEl=$('.hold');
+  if(heroEl&&!still)ticks.push(function(vh){heroEl.style.opacity=clamp(1-scrollY/(vh*.85),.12,1).toFixed(3)});
 
   /* Statement band: the ink fills in word by word as you scroll, with a soft leading edge of about three words.
      Faint to full, so the sentence is whole and AA once filled. Reduced motion, or no script: plain full ink. */
