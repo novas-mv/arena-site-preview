@@ -63,16 +63,14 @@ body{background:var(--shell)}
 .hold .lede3{margin-top:clamp(24px,3vw,40px)}
 .sheet{position:relative;z-index:2}
 
-/* statement + photo: the photo is the curtain. The statement sticks, the photograph slides up over it. */
+/* statement + photo: plain sections, no curtain (user decision). */
 .cur{position:relative}
 .cur-back{position:relative;transform-origin:50% 0}
 .cur .spread{position:relative;z-index:2}
-@media (prefers-reduced-motion:no-preference){.cur-back{position:sticky;top:72px;z-index:1}}
-.still .cur-back{position:relative}
 .slab .fw{display:inline-block;will-change:opacity}
 /* N · statement band: on pale gold; on the home page each word fills as you scroll (once per site) */
 .slab{padding-block:clamp(80px,10vw,160px)}
-.slab p.big{font-family:var(--display);font-weight:400;font-size:clamp(30px,4.2vw,64px);line-height:1.16;letter-spacing:-.015em;max-width:20em}
+.slab p.big{font-family:'Jost','Futura','Century Gothic',sans-serif;font-weight:300;font-size:clamp(28px,3.6vw,56px);line-height:1.2;letter-spacing:-.01em;max-width:21em}
 .slab .k{display:block;margin-bottom:28px}
 
 /* full-page spread: the photograph runs the full width; caption below, never on it */

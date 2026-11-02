@@ -44,11 +44,6 @@
       fws.forEach(function(el,i){var w=clamp((p*(n+EDGE)-i)/EDGE,0,1);el.style.opacity=(FLOOR+(1-FLOOR)*w).toFixed(3)})});
   }
 
-  /* Photo curtain: the photograph slides up over the statement; the statement settles back (smaller, dimmer) as it is covered. */
-  var cur=$('.cur'),curBack=cur&&$('.cur-back',cur),curFront=cur&&$('.spread',cur);
-  if(cur&&curBack&&curFront&&!still)ticks.push(function(vh){var t=curFront.getBoundingClientRect().top,p=clamp((vh-t)/(vh*.9),0,1);
-    curBack.style.transform='scale('+(1-.06*p).toFixed(4)+')';curBack.style.opacity=(1-.2*p).toFixed(3)});
-
   /* company rows: one open at a time. The name attribute does this in current browsers; this covers older ones.
      Only .cos-r rows take part, so the Leadership rows and anything else on the page are left alone. */
   var cosR=$$('.cos-r');
